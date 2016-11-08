@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">PeopleMon GO HOME!</string>
+    <string name="email_address">Email Address</string>
+    <string name="full_name">Full Name</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register">Register</string>
+    <string name="fill_out_required_fields">Please fill out all required fields!</string>
+    <string name="provide_proper_email">Please provide a properly formatted email</string>
+    <string name="password_no_match">The passwords do not match. Please try again</string>
+    <string name="login">Login</string>
+    <string name="enter_required_info">You must enter an email AND password!</string>
+    <string name="reg_failed">Registration Failed</string>
+    <string name="login_failed">Login failed!</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_map_view">Map</string>
+</resources>

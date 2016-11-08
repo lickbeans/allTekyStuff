@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/open_calendar"
+        android:icon="@android:drawable/ic_menu_my_calendar"
+        android:orderInCategory="10"
+        android:title="@string/calendar"
+        app:showAsAction="always">
+    </item>
+
+</menu>

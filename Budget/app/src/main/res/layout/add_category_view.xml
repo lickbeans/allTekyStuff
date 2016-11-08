@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.aaroncampbell.budget.Views.AddCategoryView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/category_name"
+        android:ems="10"
+        android:id="@+id/name_field"
+        android:layout_gravity="center_horizontal"
+        android:inputType="text" />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:hint="@string/amount_per_year"
+        android:ems="10"
+        android:id="@+id/amount_field"
+        android:layout_gravity="center_horizontal"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:id="@+id/add_category_button"
+        app:backgroundTint="@color/colorPrimaryDark"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:tint="@color/colorPrimary"
+        app:elevation="6dp" />
+
+    <ProgressBar
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/progress_bar"
+        android:visibility="gone"/>
+</com.aaroncampbell.budget.Views.AddCategoryView>

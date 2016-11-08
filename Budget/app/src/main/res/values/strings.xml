@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Budget</string>
+    <string name="username">Username</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="provide_name_password">You must provide a username AND password</string>
+    <string name="login_failed">Login Failed</string>
+    <string name="fill_out_all_fields">Please fill out all fields</string>
+    <string name="provide_valid_email">Please provide a valid email</string>
+    <string name="password_no_match">The passwords do not match. Please try again</string>
+    <string name="reg_failed">Registration Failed</string>
+    <string name="back_arrow"><![CDATA[<]]></string>
+    <string name="today">Today</string>
+    <string name="forward_arrow"><![CDATA[>]]></string>
+    <string name="week">Week</string>
+    <string name="month">Month</string>
+    <string name="category_name">Category Name</string>
+    <string name="amount_per_year">Amount Per Year</string>
+    <string name="invalid_amount">Invalid Amount</string>
+    <string name="cat_add_failed">Category Add Failed</string>
+    <string name="cat_added">Category Added!</string>
+    <string name="total">Total</string>
+    <string name="amount">Amount</string>
+    <string name="date">Date</string>
+    <string name="expense_added">Expense has been added!</string>
+    <string name="exp_add_failed">Failed to add expense</string>
+    <string name="calendar">Calendar</string>
+</resources>

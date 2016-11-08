@@ -1,0 +1,75 @@
+<html>
+
+<head>
+
+    <!-- Include jQuery first so Bootstrap doesn't complain -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <h1>Dynamically Appending HTML Example</h1>
+    <button type="button" onclick="testGenerateCard()">Test Inserting HTML</button>
+
+    <div class="container">
+        <!-- Create a div to hold the new divs -->
+        <div class="row" id="cards">
+        </div>
+    </div>
+
+    <!-- Create a div to hold our template. We'll get the inner HTML with jQuery. -->
+    <!-- This makes it easier for us to make quick changes without changing code. -->
+
+    <div id="templateDiv" style="display: none">
+        <div class="col-md-3" style="margin: 20px; border-radius: 10px; border: 1px solid #333333;">
+            <div class="row" style="text-align: center;"><img src="@@IMGURL@@" style="height: 150px; width: 150px; padding: 25px 10px;" /></div>
+            <div class="row" style="padding: 0 10px; text-align: center; border-top: 2px solid black; border-bottom: 2px solid black;">@@NAME@@</div>
+            <div class="row" style="padding: 15px 10px; text-align: center;">@@LOCATION@@</div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        function generateCard(personInfo) {
+            // Insert the original HTML into a string by reading from the div. I wrote the HTML first, tested it looked right, 
+            // then grabbed it as a string by asking jQuery to go get me the HTML from the DOM.
+            var template = $("#templateDiv").html(); // gets the html from inside the templateDiv div
+
+            // Swap out the values.
+            template = template.replace("@@IMGURL@@", personInfo.profilePhoto);
+            template = template.replace("@@NAME@@", personInfo.name + "<br />" + personInfo.age);
+            template = template.replace("@@LOCATION@@", personInfo.cityState);
+
+            // Return the new HTML.
+            return template;
+        }
+
+        function testGenerateCard() {
+            var sampleData = {
+                name: "Randy Unicorn",
+                cityState : "Lollipopland, MN",
+                age : "42",
+                profilePhoto: "http://1.bp.blogspot.com/_IIRXllB6WyY/S_2V0-Pa4WI/AAAAAAAAA5k/jQRe4gHBzJA/s1600/lego_unicorn.jpg"
+            };
+
+            // The divs will automatically wrap because of Bootstrap knowing it's a col-md-3.
+            var html = generateCard(sampleData);
+            $("#cards").append(html);
+
+        }
+
+    </script>
+</body>
+</html>

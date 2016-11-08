@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.aaroncampbell.budget.Views.RegisterView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/username"
+        android:ems="10"
+        android:id="@+id/username_field"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="52dp"
+        android:inputType="textEmailAddress"
+        android:hint="@string/email_address"
+        android:ems="10"
+        android:id="@+id/email_field"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/password_field"
+        android:hint="@string/password"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="Confirm Password"
+        android:ems="10"
+        android:id="@+id/confirm_field"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"/>
+
+    <Button
+        android:text="@string/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/register_button"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/spinner"
+        android:visibility="gone"/>
+
+</com.aaroncampbell.budget.Views.RegisterView>

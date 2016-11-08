@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.aaroncampbell.budget.Views.BudgetListView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:id="@+id/nav_row">
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:text="@string/back_arrow"
+            android:id="@+id/back_button"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="test"
+            android:gravity="center"
+            android:id="@+id/date_textview"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/today"
+            android:id="@+id/today_button"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:text="@string/forward_arrow"
+            android:id="@+id/forward_button"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/button_row"
+        android:layout_below="@+id/nav_row">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/week"
+            android:id="@+id/week_button"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/primary_text_dark"
+            android:alpha="1.0"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/month"
+            android:id="@+id/month_button"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/primary_text_dark"
+            android:alpha="1.0"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"/>
+
+    </LinearLayout>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/button_row"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <android.support.v7.widget.RecyclerView
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:id="@+id/recycler_view"
+            android:scrollbars="vertical"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@android:drawable/ic_input_add"
+            app:backgroundTint="@color/colorPrimaryDark"
+            android:tint="@color/colorPrimary"
+            app:fabSize="normal"
+            android:id="@+id/add_category_button"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            app:layout_anchor="@id/recycler_view"
+            app:layout_anchorGravity="bottom|end"/>
+    </android.support.design.widget.CoordinatorLayout>
+
+</com.aaroncampbell.budget.Views.BudgetListView>

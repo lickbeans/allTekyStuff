@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.efa.efadraw.Views.MainView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="@android:color/white">
+
+    <Button
+        android:text="@string/start_with_a_blank_image"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:id="@+id/new_button"
+        android:layout_marginTop="1dp"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:background="@android:color/holo_green_light"
+        android:drawableStart="@mipmap/plus"
+        android:padding="8dp"/>
+
+    <Button
+        android:text="@string/pick_a_starter_image"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:id="@+id/pic_button"
+        android:layout_marginTop="1dp"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:background="@android:color/holo_green_light"
+        android:drawableStart="@mipmap/picture"
+        android:padding="8dp" />
+</com.efa.efadraw.Views.MainView>

@@ -1,0 +1,22 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=7B:3D:FF:3B:84:A9:B7:16:AC:FF:FD:20:7F:F8:B1:A9:57:43:68:08%3Bcom.elevenfifty.elevenmapper
+
+    You can also add your credentials to an existing key, using this line:
+    7B:3D:FF:3B:84:A9:B7:16:AC:FF:FD:20:7F:F8:B1:A9:57:43:68:08;com.elevenfifty.elevenmapper
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+
+    // EM1 add key below
+    -->
+
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBcB_VBSJQt3pV17TCbMmIjc_AyC2N0EpM</string>
+</resources>
