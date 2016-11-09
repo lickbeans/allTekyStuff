@@ -2,7 +2,7 @@ package com.aaroncampbell.peoplemon;
 
 import android.app.Application;
 
-import com.aaroncampbell.peoplemon.Stages.CatchListStage;
+import com.aaroncampbell.peoplemon.Stages.MapViewStage;
 
 import flow.Flow;
 import flow.History;
@@ -14,7 +14,7 @@ import flow.History;
 public class PeopleMonApplication extends Application {
     private static PeopleMonApplication application;
     public final Flow mainFlow =
-            new Flow(History.single(new CatchListStage()));
+            new Flow(History.single(new MapViewStage()));
 
     public static final String API_BASE_URL = "https://efa-peoplemon-api.azurewebsites.net";
 

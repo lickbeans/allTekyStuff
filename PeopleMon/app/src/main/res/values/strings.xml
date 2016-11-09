@@ -14,4 +14,9 @@
     <string name="login_failed">Login failed!</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_map_view">Map</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
+        AIzaSyAmb5NIB4_LAruEuxJKzmnvKvnwcqEsBho
+    </string>
+    <string name="denied">Permission Denied</string>
+
 </resources>

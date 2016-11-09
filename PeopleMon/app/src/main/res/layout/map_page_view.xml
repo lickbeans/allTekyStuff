@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-    <TextView
+<com.aaroncampbell.peoplemon.Views.MapPageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Success!"/>
-
-</RelativeLayout>
+        android:layout_weight="1"/>
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/globe"
+        android:id="@+id/location"
+        app:backgroundTint="@color/colorPrimaryDark"
+        android:layout_gravity="bottom"
+        android:layout_margin="16dp"
+        android:tint="@color/colorPrimary"
+        app:elevation="6dp" />
+</com.aaroncampbell.peoplemon.Views.MapPageView>

@@ -3,8 +3,8 @@ package com.example.aaroncampbell.elevenmapper;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -25,7 +25,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -34,8 +33,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-
-import static android.media.CamcorderProfile.get;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -147,33 +144,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         public void onDirectionFailure(Throwable t) {
                             Toast.makeText(MapsActivity.this, "Error: Cannot acquire directions.", Toast.LENGTH_LONG).show();
                         }
-                    });
+                        });
+                    }
                 }
-            }
-        });
+            });
 
-        // Add a marker in SP and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(STHPNT).title("Marker in South Point").icon(BitmapDescriptorFactory.fromResource(R.mipmap.dff)).snippet("#One DFF Location"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(STHPNT, STREET_LEVEL));
+            // Add a marker in SP and move the camera
+            LatLng sydney = new LatLng(-34, 151);
+            mMap.addMarker(new MarkerOptions().position(STHPNT).title("Marker in South Point").icon(BitmapDescriptorFactory.fromResource(R.mipmap.dff)).snippet("#One DFF Location"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(STHPNT, STREET_LEVEL));
 
-        GoogleMap.InfoWindowAdapter infoWinAdapter = new GoogleMap.InfoWindowAdapter() {
-            @Override
-            public View getInfoWindow(Marker marker) {
-                return null;
-            }
+            GoogleMap.InfoWindowAdapter infoWinAdapter = new GoogleMap.InfoWindowAdapter() {
+                @Override
+                public View getInfoWindow(Marker marker) {
+                    return null;
+                }
 
-            @Override
-            public View getInfoContents(Marker marker) {
-                View v = getLayoutInflater().inflate(R.layout.layout_info_window, null);
+                @Override
+                public View getInfoContents(Marker marker) {
+                    View v = getLayoutInflater().inflate(R.layout.layout_info_window, null);
 
-                TextView tvAddress = (TextView)v.findViewById(R.id.tv_address);
-                tvAddress.setText(getAddress());
-                return v;
-            }
-        };
+                    TextView tvAddress = (TextView)v.findViewById(R.id.tv_address);
+                    tvAddress.setText(getAddress());
+                    return v;
+                }
+            };
 
-        mMap.setInfoWindowAdapter(infoWinAdapter);
+            mMap.setInfoWindowAdapter(infoWinAdapter);
     }
 
 

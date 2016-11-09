@@ -10,12 +10,22 @@ import java.util.Date;
  */
 
 public class Account {
+    @SerializedName("Id")
+    private String userId;
     @SerializedName("Email")
     private String email;
+    @SerializedName("HasRegistered")
+    private boolean hasRegistered;
+    @SerializedName("LoginProvider")
+    private String loginProvider;
     @SerializedName("FullName")
     private String fullName;
     @SerializedName("AvatarBase64")
     private String base64Avatar;
+    @SerializedName("LastCheckinLatitude")
+    private double lastLat;
+    @SerializedName("LastCheckinLongitude")
+    private double lastLng;
     @SerializedName("ApiKey")
     private String apiKey;
     @SerializedName("Password")
@@ -24,7 +34,7 @@ public class Account {
     private String access_token;
     @SerializedName("grantType")
     private String grantType;
-    @SerializedName("expiration")
+    @SerializedName(".expires")
     private Date expiration;
 
     public Account() {

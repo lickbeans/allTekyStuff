@@ -88,7 +88,7 @@ public class LoginView extends LinearLayout {
                     if (response.isSuccessful()) {
                         Account regAccount = response.body();
                         UserStore.getInstance().setToken(regAccount.getToken());
-//                        UserStore.getInstance().setTokenExpiration(regAccount.getExpiration());
+                        UserStore.getInstance().setTokenExpiration(regAccount.getExpiration());
                         Log.d("*****", UserStore.getInstance().getToken().toString());
 
                         Flow flow = PeopleMonApplication.getMainFlow();
