@@ -24,5 +24,10 @@
     <string name="name_successful">Name Updated Successfully!</string>
     <string name="name_fail">Name Update Failed</string>
     <string name="nearby_failed">Nearby Search Failed</string>
+    <string name="catch_success">You caught a Peep!</string>
+    <string name="catch_failed">Catching Failed</string>
+    <string name="peep_alert_title">You found a Peep!</string>
+    <string name="peep_alert_message">Catch this Peep?</string>
+    <string name="checkin_failed">Checkin Failed!</string>
 
 </resources>

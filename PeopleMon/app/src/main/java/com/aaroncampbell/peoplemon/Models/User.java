@@ -34,9 +34,8 @@ public class User {
         this.latitude = latitude;
     }
 
-    public User(String userId, String caughtUserId, String userName, String base64, double longitude, double latitude, Date createDate) {
+    public User(String userId, String userName, String base64, double longitude, double latitude, Date createDate) {
         this.userId = userId;
-        this.caughtUserId = caughtUserId;
         this.userName = userName;
         this.base64 = base64;
         this.longitude = longitude;
@@ -45,6 +44,11 @@ public class User {
     }
 
     public User(Integer radiusInMeters) {
+        this.radiusInMeters = radiusInMeters;
+    }
+
+    public User(String caughtUserId, Integer radiusInMeters) {
+        this.caughtUserId = caughtUserId;
         this.radiusInMeters = radiusInMeters;
     }
 

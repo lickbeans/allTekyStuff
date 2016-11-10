@@ -57,15 +57,16 @@ public class AccountProfileView extends LinearLayout {
 
     @OnClick(R.id.name_btn)
     public void nameTapped() {
-        String nameView = editName.getText().toString();
+        nameView.setText(editName.getText().toString());
+        String fullName = nameView.getText().toString();
 
-
-        Account accName = new Account(nameView, null);
+        Account accName = new Account(fullName, null);
         RestClient restClient = new RestClient();
         restClient.getApiService().editProfile(accName).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
+
                     Toast.makeText(context, R.string.name_successful, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(context, R.string.name_fail + ":" + response.code(), Toast.LENGTH_SHORT).show();
@@ -77,5 +78,9 @@ public class AccountProfileView extends LinearLayout {
                 Toast.makeText(context, R.string.name_fail, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void bindName(Account account) {
+
     }
 }

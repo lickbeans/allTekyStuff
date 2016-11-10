@@ -39,6 +39,6 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("/api/v1/User/Catch")
     Call<Void> catchPeeps(
-            @Field("caughtUserId") String caughtUserId,
+            @Field("caughtUserId") String userId,
             @Field("radiusInMeters") Integer radiusInMeters);
 }

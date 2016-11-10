@@ -4,6 +4,7 @@ import android.Manifest;
 import android.animation.IntEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -12,6 +13,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -26,7 +28,6 @@ import com.aaroncampbell.peoplemon.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.places.Place;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -62,8 +63,7 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
     @Bind(R.id.map)
     MapView mapView;
     GoogleMap map;
-    Place currentPlace;
-    Integer BUILDING_LEVEL = 16;
+    Integer BUILDING_LEVEL = 17;
     private double getLat, getLng;
     private double lat, lng;
     Location mLastLocation;
@@ -127,17 +127,15 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
         map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-//        map.setOnMyLocationChangeListener(myLocationChangeListener);
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context,
                 Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
         }
         map.setMinZoomPreference(6.0f);
-        map.setMaxZoomPreference(18.0f);
+        map.setMaxZoomPreference(20.0f);
         try {
             map.setMyLocationEnabled(true);
         } catch (SecurityException e) {}
-//        map.addMarker(new MarkerOptions().position(coordinate).icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)).snippet("Current Place"));
         map.getUiSettings().setZoomControlsEnabled(true);
         map.getUiSettings().setCompassEnabled(true);
         map.getUiSettings().setAllGesturesEnabled(true);
@@ -167,8 +165,7 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
 
         MarkerOptions options = new MarkerOptions()
                 .position(latLng)
-                .title("Current Location")
-                .draggable(true);
+                .title("Current Location");
         map.addMarker(options);
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, BUILDING_LEVEL));
         final Circle circle = map.addCircle(new CircleOptions().center(latLng)
@@ -186,11 +183,12 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
                 float animatedFraction = valueAnimator.getAnimatedFraction();
                 // Log.e("", "" + animatedFraction);
-                circle.setRadius(animatedFraction * 1000);
+                circle.setRadius(animatedFraction * 100);
             }
         });
-
         valAnim.start();
+
+        // Call Nearby method
         findNearby();
 
         Account account = new Account(mLastLocation.getLatitude(), mLastLocation.getLongitude());
@@ -205,10 +203,8 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-
+                Toast.makeText(context, R.string.checkin_failed, Toast.LENGTH_LONG).show();
             }
-
-
         });
     }
     private void findNearby() {
@@ -221,14 +217,16 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
                    for (User user : response.body()) {
                        userLat = user.getLatitude();
                        userLng = user.getLongitude();
+                       userName = user.getUserName();
                        LatLng userPos = new LatLng(userLat, userLng);
                        userId = user.getUserId();
                        MarkerOptions peeps = new MarkerOptions()
                                .position(userPos)
-                               .title(userName)
                                .snippet(userId)
+                               .title(userName)
                                .icon(spyCon);
                        map.addMarker(peeps);
+                       Log.d("----->", userName + " " + userId);
                    }
                 } else {
                     Toast.makeText(context, getContext().getString(R.string.nearby_failed) + ":" + response.code(), Toast.LENGTH_SHORT);
@@ -241,31 +239,49 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
             }
         });
 
-//        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-//
-//            @Override
-//            public boolean onMarkerClick(Marker marker) {
-//                userName = marker.getTitle();
-//                userId =  marker.getSnippet();
-//
-//                catchPeeps();
-//                return false;
-//            }
-//        });
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                userName = marker.getTitle();
+                userId =  marker.getSnippet();
+                new AlertDialog.Builder(context)
+                        .setTitle(getContext().getString(R.string.peep_alert_title))
+                        .setMessage(getContext().getString(R.string.peep_alert_message))
+                        .setPositiveButton("Catch", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                catchPeeps();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                return;
+                            }
+                        })
+                        .setIcon(R.drawable.pokeball)
+                        .show();
+                return false;
+            }
+        });
     }
-//
-//    public void catchPeeps() {
-//        RestClient restClient = new RestClient();
-//        restClient.getApiService().catchPeeps(caughtUserId, radiusInMeters).enqueue(new Callback<Void>() {
-//            @Override
-//            public void onResponse(Call<Void> call, Response<Void> response) {
-//                Toast.makeText(context, "You caught him!", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Void> call, Throwable t) {
-//
-//            }
-//        });
-//    }
+
+    public void catchPeeps() {
+        RestClient restClient = new RestClient();
+        restClient.getApiService().catchPeeps(userId, radiusInMeters).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(context, R.string.catch_success, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, getContext().getString(R.string.catch_failed) + ":" + response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(context, getContext().getString(R.string.catch_failed), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
