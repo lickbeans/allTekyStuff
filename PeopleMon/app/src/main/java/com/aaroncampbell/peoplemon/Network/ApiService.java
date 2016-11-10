@@ -9,6 +9,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by aaroncampbell on 10/31/16.
@@ -27,14 +28,17 @@ public interface ApiService {
     Call<Void> register(@Body Account account);
 
     @GET("/v1/User/Nearby")
-    Call<User[]> nearby(@Body User user);
+    Call<User[]> nearby(@Query("radiusInMeters") Integer radiusInMeters);
 
     @POST("/v1/User/CheckIn")
-    Call<User> checkIn(@Body User user);
-
-    @GET("/api/Account/UserInfo")
-    Call<Account> viewProfile(@Body Account account);
+    Call<Void> checkIn(@Body Account account);
 
     @POST("/api/Account/UserInfo")
-    Call<Account> editProfile(@Body Account account);
+    Call<Void> editProfile(@Body Account account);
+
+    @FormUrlEncoded
+    @POST("/api/v1/User/Catch")
+    Call<Void> catchPeeps(
+            @Field("caughtUserId") String caughtUserId,
+            @Field("radiusInMeters") Integer radiusInMeters);
 }

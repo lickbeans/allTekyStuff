@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         dispatcher = new ScreenplayDispatcher(this, container);
         dispatcher.setUp(flow);
 
-//        UserStore.getInstance().setToken(null);
+        UserStore.getInstance().setToken(null);
 
         if (UserStore.getInstance().getToken() == null ||
                 UserStore.getInstance().getTokenExpiration() == null) {

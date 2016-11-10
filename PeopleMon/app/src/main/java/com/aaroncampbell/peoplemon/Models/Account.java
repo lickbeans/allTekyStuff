@@ -26,6 +26,12 @@ public class Account {
     private double lastLat;
     @SerializedName("LastCheckinLongitude")
     private double lastLng;
+    @SerializedName("latitude")
+    private double latitude;
+    @SerializedName("longitude")
+    private double longitude;
+    @SerializedName("LastCheckinDateTime")
+    private Date lastCheckInDate;
     @SerializedName("ApiKey")
     private String apiKey;
     @SerializedName("Password")
@@ -40,7 +46,18 @@ public class Account {
     public Account() {
     }
 
-    public Account(String email, String fullName, String base64Avatar, String apiKey, String password) {
+    public Account(String email, String fullName, String base64Avatar, double lastLat, double lastLng, Date lastCheckInDate, String apiKey, String password) {
+        this.email = email;
+        this.fullName = fullName;
+        this.base64Avatar = base64Avatar;
+        this.lastLat = lastLat;
+        this.lastLng = lastLng;
+        this.lastCheckInDate = lastCheckInDate;
+        this.apiKey = apiKey;
+        this.password = password;
+    }
+
+    public Account(String email, String fullName, String base64Avatar, String apiKey, String password){
         this.email = email;
         this.fullName = fullName;
         this.base64Avatar = base64Avatar;
@@ -52,6 +69,16 @@ public class Account {
         this.grantType = Constants.GRANT_TYPE;
         this.email = email;
         this.password = password;
+    }
+
+    public Account(String fullName, String base64Avatar) {
+        this.fullName = fullName;
+        this.base64Avatar = base64Avatar;
+    }
+
+    public Account(double latitude, double longitude){
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public String getEmail() {
@@ -84,6 +111,38 @@ public class Account {
 
     public void setApiKey(String apiKey) {
         this.apiKey = apiKey;
+    }
+
+    public double getLastLat() {
+        return lastLat;
+    }
+
+    public void setLastLat(double lastLat) {
+        this.lastLat = lastLat;
+    }
+
+    public double getLastLng() {
+        return lastLng;
+    }
+
+    public void setLastLng(double lastLng) {
+        this.lastLng = lastLng;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public String getPassword() {

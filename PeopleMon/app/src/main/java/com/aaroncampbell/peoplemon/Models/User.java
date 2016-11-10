@@ -11,6 +11,8 @@ import java.util.Date;
 public class User {
     @SerializedName("UserId")
     private String userId;
+    @SerializedName("CaughtUserId")
+    private String caughtUserId;
     @SerializedName("UserName")
     private String userName;
     @SerializedName("AvatarBase64")
@@ -21,6 +23,8 @@ public class User {
     private double latitude;
     @SerializedName("Created")
     private Date createDate;
+    @SerializedName("radiusInMeters")
+    private Integer radiusInMeters;
 
     public User() {
     }
@@ -30,13 +34,18 @@ public class User {
         this.latitude = latitude;
     }
 
-    public User(String userId, String userName, String base64, double longitude, double latitude, Date createDate) {
+    public User(String userId, String caughtUserId, String userName, String base64, double longitude, double latitude, Date createDate) {
         this.userId = userId;
+        this.caughtUserId = caughtUserId;
         this.userName = userName;
         this.base64 = base64;
         this.longitude = longitude;
         this.latitude = latitude;
         this.createDate = createDate;
+    }
+
+    public User(Integer radiusInMeters) {
+        this.radiusInMeters = radiusInMeters;
     }
 
     public String getUserId() {
@@ -45,6 +54,13 @@ public class User {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getCaughtUserId() {
+        return caughtUserId;
+    }
+    public void setCaughtUserId(String caughtUserId) {
+        this.caughtUserId = caughtUserId;
     }
 
     public String getUserName() {
@@ -85,5 +101,12 @@ public class User {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public Integer getRadiusInMeters() {
+        return radiusInMeters;
+    }
+    public void setRadiusInMeters(Integer radiusInMeters) {
+        this.radiusInMeters = radiusInMeters;
     }
 }

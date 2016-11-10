@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.aaroncampbell.peoplemon.Components.Constants;
+import com.aaroncampbell.peoplemon.MainActivity;
 import com.aaroncampbell.peoplemon.Models.Account;
 import com.aaroncampbell.peoplemon.Network.RestClient;
 import com.aaroncampbell.peoplemon.Network.UserStore;
@@ -52,6 +53,8 @@ public class LoginView extends LinearLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
         ButterKnife.bind(this);
+
+        ((MainActivity)context).showMenuItem(false);
     }
 
     @OnClick(R.id.register_button)
@@ -80,7 +83,6 @@ public class LoginView extends LinearLayout {
             loginButton.setEnabled(false);
             regButton.setEnabled(false);
 
-//            Account account = new Account(userEmail, password, Constants.GRANT_TYPE);
             RestClient restClient = new RestClient();
             restClient.getApiService().login(Constants.GRANT_TYPE, userEmail, password).enqueue(new Callback<Account>() {
                 @Override
@@ -94,6 +96,7 @@ public class LoginView extends LinearLayout {
                         Flow flow = PeopleMonApplication.getMainFlow();
                         History newHistory = History.single(new MapViewStage());
                         flow.setHistory(newHistory, Flow.Direction.REPLACE);
+                        ((MainActivity)context).showMenuItem(true);
                     } else {
                         resetView(); // reenables buttons
                         Toast.makeText(context, R.string.login_failed + ":" + response.code(), Toast.LENGTH_LONG).show();

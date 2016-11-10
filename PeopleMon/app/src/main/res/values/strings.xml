@@ -18,5 +18,11 @@
         AIzaSyAmb5NIB4_LAruEuxJKzmnvKvnwcqEsBho
     </string>
     <string name="denied">Permission Denied</string>
+    <string name="error_retrieving_image">Error Retrieving Image</string>
+    <string name="avatar_update_success">Avatar Updated Successfully!</string>
+    <string name="avatar_update_fail">Avatar Update Failed</string>
+    <string name="name_successful">Name Updated Successfully!</string>
+    <string name="name_fail">Name Update Failed</string>
+    <string name="nearby_failed">Nearby Search Failed</string>
 
 </resources>

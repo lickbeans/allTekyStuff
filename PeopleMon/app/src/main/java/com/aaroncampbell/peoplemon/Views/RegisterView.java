@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.aaroncampbell.peoplemon.Components.Constants;
+import com.aaroncampbell.peoplemon.MainActivity;
 import com.aaroncampbell.peoplemon.Models.Account;
 import com.aaroncampbell.peoplemon.Network.RestClient;
 import com.aaroncampbell.peoplemon.PeopleMonApplication;
@@ -56,6 +57,8 @@ public class RegisterView extends LinearLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
         ButterKnife.bind(this);
+
+        ((MainActivity)context).showMenuItem(false);
     }
 
     @OnClick(R.id.reg_button)
