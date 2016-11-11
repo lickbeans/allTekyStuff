@@ -24,7 +24,9 @@ import com.aaroncampbell.peoplemon.MainActivity;
 import com.aaroncampbell.peoplemon.Models.Account;
 import com.aaroncampbell.peoplemon.Models.User;
 import com.aaroncampbell.peoplemon.Network.RestClient;
+import com.aaroncampbell.peoplemon.PeopleMonApplication;
 import com.aaroncampbell.peoplemon.R;
+import com.aaroncampbell.peoplemon.Stages.CatchListStage;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
@@ -40,10 +42,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.Date;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import flow.Flow;
+import flow.History;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -62,6 +65,7 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
 
     @Bind(R.id.map)
     MapView mapView;
+
     GoogleMap map;
     Integer BUILDING_LEVEL = 17;
     private double getLat, getLng;
@@ -75,8 +79,7 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
     private double userLat;
     private double userLng;
     private String base64ava;
-    private Date createdDate;
-    private Integer radiusInMeters;
+    private final Integer radiusInMeters = 100;
 
     public MapPageView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -210,7 +213,7 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
     private void findNearby() {
         final BitmapDescriptor spyCon = BitmapDescriptorFactory.fromResource(R.drawable.spy);
         RestClient restClient = new RestClient();
-        restClient.getApiService().nearby(500).enqueue(new Callback<User[]>() {
+        restClient.getApiService().nearby(100).enqueue(new Callback<User[]>() {
             @Override
             public void onResponse(Call<User[]> call, Response<User[]> response) {
                 if (response.isSuccessful()) {
@@ -268,8 +271,9 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
     }
 
     public void catchPeeps() {
+        User user = new User(userId, radiusInMeters);
         RestClient restClient = new RestClient();
-        restClient.getApiService().catchPeeps(userId, radiusInMeters).enqueue(new Callback<Void>() {
+        restClient.getApiService().catchPeeps(user).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
@@ -283,5 +287,19 @@ public class MapPageView extends RelativeLayout implements OnMapReadyCallback,
                 Toast.makeText(context, getContext().getString(R.string.catch_failed), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+//    @OnClick
+//    public void msgTapped() {
+//
+//    }
+//
+    @OnClick(R.id.caught_button)
+    public void caughtTapped() {
+        Flow flow = PeopleMonApplication.getMainFlow();
+        History newHistory = flow.getHistory().buildUpon()
+                .push(new CatchListStage())
+                .build();
+        flow.setHistory(newHistory, Flow.Direction.FORWARD);
     }
 }

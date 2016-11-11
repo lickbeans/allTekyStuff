@@ -26,7 +26,7 @@ public class CatchListStage extends IndexedStage {
 
     @Override
     public int getLayoutId() {
-        return R.layout.catch_list_view;
+        return R.layout.caught_user_item;
     }
 
 

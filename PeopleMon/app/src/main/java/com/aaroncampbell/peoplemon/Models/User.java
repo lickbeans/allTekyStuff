@@ -43,10 +43,6 @@ public class User {
         this.createDate = createDate;
     }
 
-    public User(Integer radiusInMeters) {
-        this.radiusInMeters = radiusInMeters;
-    }
-
     public User(String caughtUserId, Integer radiusInMeters) {
         this.caughtUserId = caughtUserId;
         this.radiusInMeters = radiusInMeters;

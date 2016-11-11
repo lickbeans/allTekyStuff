@@ -36,9 +36,12 @@ public interface ApiService {
     @POST("/api/Account/UserInfo")
     Call<Void> editProfile(@Body Account account);
 
-    @FormUrlEncoded
-    @POST("/api/v1/User/Catch")
-    Call<Void> catchPeeps(
-            @Field("caughtUserId") String userId,
-            @Field("radiusInMeters") Integer radiusInMeters);
+    @GET("/api/Account/UserInfo")
+    Call<Account> viewProfile();
+
+    @POST("/v1/User/Catch")
+    Call<Void> catchPeeps(@Body User user);
+
+    @GET("/v1/User/Caught")
+    Call<User[]> caughtPeeps(@Body User user);
 }

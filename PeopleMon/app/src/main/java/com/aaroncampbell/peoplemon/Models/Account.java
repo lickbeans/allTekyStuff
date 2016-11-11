@@ -71,6 +71,13 @@ public class Account {
         this.password = password;
     }
 
+    public Account(String fullName, String base64Avatar, double lastLat, double lastLng) {
+        this.fullName = fullName;
+        this.base64Avatar = base64Avatar;
+        this.lastLat = lastLat;
+        this.lastLng = lastLng;
+    }
+
     public Account(String fullName, String base64Avatar) {
         this.fullName = fullName;
         this.base64Avatar = base64Avatar;

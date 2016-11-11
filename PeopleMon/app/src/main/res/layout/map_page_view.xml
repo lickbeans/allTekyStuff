@@ -15,7 +15,7 @@
         android:clickable="true"
         app:fabSize="normal"
         app:srcCompat="@drawable/mariocolor"
-        android:id="@id/caught_list"
+        android:id="@+id/caught_button"
         app:backgroundTint="@color/colorPrimaryDark"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"

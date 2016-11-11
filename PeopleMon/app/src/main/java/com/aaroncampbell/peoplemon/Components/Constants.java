@@ -10,4 +10,5 @@ public final class Constants {
     public static final String GRANT_TYPE = "password";
     public static final String API_KEY = "iOSandroid301november2016";
     public static final String GOOGLE_MAPS_API = "AIzaSyAmb5NIB4_LAruEuxJKzmnvKvnwcqEsBho";
+    public static final Integer RADIUSINMETERS = 100;
 }

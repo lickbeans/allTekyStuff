@@ -15,6 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private ScreenplayDispatcher dispatcher;
     private static int RESULT_LOAD_IMG = 1;
     String encodedImage;
-    protected byte[] overByte;
+//    protected byte[] overByte;
     private Context context;
 
     @Bind(R.id.container)
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         ButterKnife.bind(this);
         this.savedInstanceState = savedInstanceState;
@@ -136,10 +138,12 @@ public class MainActivity extends AppCompatActivity {
                 String imageString = cursor.getString(columnIndex);
                 cursor.close();
 
-                Bitmap bitmap = BitmapFactory.decodeFile("/path/to/image.jpg");
+                Log.d("$$$$$$", imageString);
+
+                Bitmap bitmap = BitmapFactory.decodeFile(imageString);
                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream); //bm is the bitmap object
-                overByte = outputStream.toByteArray();
+                byte[] overByte = outputStream.toByteArray();
                 encodedImage = Base64.encodeToString(overByte, Base64.DEFAULT);
 
                 makeApiCallToPostImage(encodedImage);
@@ -160,7 +164,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(context, R.string.avatar_update_success, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(context, R.string.avatar_update_fail + ":" + response.code(), Toast.LENGTH_SHORT).show();
                 }

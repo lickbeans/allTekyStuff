@@ -1,12 +1,9 @@
 package com.aaroncampbell.budget.Views;
 
 import android.content.Context;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,7 +15,7 @@ import com.aaroncampbell.budget.Models.Category;
 import com.aaroncampbell.budget.Network.RestClient;
 import com.aaroncampbell.budget.R;
 import com.aaroncampbell.budget.Stages.AddCategoryStage;
-import com.aaroncampbell.budget.Stages.RegisterStage;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -27,6 +24,7 @@ import java.util.Formatter;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -87,7 +85,7 @@ public class BudgetListView extends RelativeLayout {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(weekAdapter);
-
+;
         getNow();
 
         loadCategories();
